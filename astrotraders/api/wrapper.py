@@ -47,7 +47,7 @@ class HttpxClientWrapper:
 
     def raw_request(
         self, method: str, uri: str, **params: Unpack["HttpxRequestParams"]
-    ) -> Optional[dict[Any, Any]]:
+    ) -> Optional[Union[dict[Any, Any], list[dict]]]:
         # because httpx doesn't have default way to change json encoder
         if json_obj := params.get("json"):
             # it works as well with bytes

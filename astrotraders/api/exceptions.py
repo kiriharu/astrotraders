@@ -9,8 +9,8 @@ def exception_hook(response: Response) -> None:
     response.read()
     if response.content:
         data: Any = response.json(cls=ORJSONDecoder)
-        if response := data.get("error"):
-            raise APIException(response)
+        if isinstance(response, dict) and data.get("error"):
+            raise APIException(data.get("error"))
 
 
 class APIException(Exception):

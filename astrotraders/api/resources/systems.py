@@ -1,3 +1,5 @@
+from typing import List, cast
+
 from astrotraders.api.resources.base import BaseResource
 from astrotraders.api.schemas import (
     PaginatedObject,
@@ -31,6 +33,13 @@ class SystemsResource(BaseResource):
         Get the details of a system.
         """
         return self._client.request_to_model("GET", f"/systems/{name}", System)
+
+    def all(self) -> List[System]:
+        """
+        Get all systems with waypoints from undocumented endpoint
+        """
+        systems = cast(list[dict], self._client.raw_request("GET", "/systems.json"))
+        return [System(**system) for system in systems]
 
 
 class WaypointsResource(BaseResource):
