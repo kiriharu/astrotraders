@@ -1,0 +1,17 @@
+# tests
+.pytest_cache
+
+# mypy
+.mypy_cache
+
+# editors
+.vscode/
+.idea/
+
+# python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# sphinx
+build
