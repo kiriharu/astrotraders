@@ -4,7 +4,17 @@ version = "1.0.0"
 description = "A typed, handwrited and powerful spacetraders API wrapper"
 authors = ["kiriharu <me@kiriha.ru>"]
 readme = "README.md"
+keywords = ["spacetraders", "spacetraders.io"]
 packages = [{include = "astrotraders"}]
+homepage = "https://github.com/kiriharu/astrotraders"
+repository = "https://github.com/kiriharu/astrotraders"
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Developers",
+    "Typing :: Typed",
+    "Topic :: Utilities"
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -38,7 +48,3 @@ init_forbid_extra = true
 init_typed = true
 warn_required_dynamic_aliases = true
 warn_untyped_fields = true
-
-[project.urls]
-"Homepage" = "https://github.com/kiriharu/astrotraders"
-"Bug Tracker" = "https://github.com/kiriharu/astrotraders/issues"

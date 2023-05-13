@@ -1,0 +1,58 @@
+name: Tests and checks
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "astrotraders/**"
+      - "tests/**"
+      - "pyproject.toml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "astrotraders/**"
+      - "tests/**"
+      - "pyproject.toml"
+  
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+        python-version: # TODO: add 3.9 and 3.8 support
+          - '3.10'
+  
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Install poetry
+        run: pip install poetry
+        
+      - name: Set up Python ${{ matrix.python-version }} on ${{ matrix.os }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "poetry"
+          cache-dependency-path: poetry.lock
+
+      - name: Install project dependencies
+        run: |
+          poetry install --with dev
+
+      - name: Run black
+        run: poetry run black --check --diff astrotraders
+
+      - name: Run mypy
+        run: poetry run mypy astrotraders --enable-incomplete-feature=Unpack --check-untyped-defs
+
+      - name: Run tests
+        run: poetry run pytest
+
