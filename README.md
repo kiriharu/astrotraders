@@ -29,6 +29,9 @@ agent = client.agents.info()
 systems = client.systems.list()
 contracts = client.contracts.list()
 factions = client.factions.list()
+# you can use undocumented endpoints!
+stats = client.server.stats()
+universe = client.systems.all()
 ```
 
 ## TODO
