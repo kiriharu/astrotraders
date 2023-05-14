@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.abspath(".."))
 project = 'astrotraders'
 copyright = '2023, kiriharu'
 author = 'kiriharu'
-release = '1.0.1'
+release = '1.0.2'
 extensions = ["sphinx.ext.autodoc"]
 templates_path = ['_templates']
 exclude_patterns = []

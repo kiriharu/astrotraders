@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "astrotraders"
-version = "1.0.1"
+version = "1.0.2"
 description = "A typed, handwrited and powerful spacetraders API wrapper"
 authors = ["kiriharu <me@kiriha.ru>"]
 readme = "README.md"
