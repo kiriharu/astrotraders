@@ -1288,3 +1288,33 @@ class RegisterData(BaseModel):
 
 class RegisterResponse(BaseModel):
     data: RegisterData
+
+
+class ServerStats(BaseModel):
+    agents: int
+    ships: int
+    systems: int
+    waypoints: int
+
+
+class LeaderboardsCreditTopItem(BaseModel):
+    agent: NonEmptyStr = Field(alias="agentSymbol")
+    credits: int
+
+
+class LeaderboardsSubmittedChartsTopItem(BaseModel):
+    agent: NonEmptyStr = Field(alias="agentSymbol")
+    chart_count: int = Field(alias="chartCount")
+
+
+class Leaderboards(BaseModel):
+    most_credits: list[LeaderboardsCreditTopItem] = Field(alias="mostCredits")
+    most_submitted_charts: list[LeaderboardsSubmittedChartsTopItem] = Field(
+        alias="mostSubmittedCharts"
+    )
+
+
+class ServerStatsResponse(BaseModel):
+    status: str
+    stats: ServerStats
+    leaderboards: Leaderboards

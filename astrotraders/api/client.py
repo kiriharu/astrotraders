@@ -6,6 +6,7 @@ from astrotraders.api.resources import (
     ContractsResource,
     FactionsResource,
     FleetResource,
+    ServerResource,
 )
 from astrotraders.api.exceptions import exception_hook
 from astrotraders.api.wrapper import HttpxClientWrapper
@@ -20,6 +21,7 @@ class AstroTradersClient:
         self._contracts = ContractsResource(self._client)
         self._factions = FactionsResource(self._client)
         self._fleet = FleetResource(self._client)
+        self._server = ServerResource(self._client)
 
     @classmethod
     def set_up(
@@ -70,6 +72,13 @@ class AstroTradersClient:
         Fleet is the collection of your ships.
         """
         return self._fleet
+
+    @property
+    def server(self) -> ServerResource:
+        """
+        Server resources like leaderboards.
+        """
+        return self._server
 
     def close(self) -> "None":
         self._httpx_instance.close()
